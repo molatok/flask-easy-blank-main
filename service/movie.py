@@ -12,8 +12,8 @@ class MovieService:
     def create_movie(self, data):
         self.movie_dao.create()
         
-    def update_movie_full(self, data):
-        movie = self.get_movies(data['movie_id'])
+    def update_movie_full(self, movie_id, data):
+        movie = self.get_movies(movie_id)
         movie.title = data['title']
         movie.description = data['description']
         movie.trailer = data['trailer']
@@ -25,20 +25,27 @@ class MovieService:
         return movie
         
     
-    def update_movie_partial(self, data):
-        movie = self.get_movies(data['movie_id'])
-    
-        if not movie:
-            return 'не нашли', 404
-        movie.title = data['title']
-        movie.description = data['description']
-        movie.trailer = data['trailer']
-        movie.year = data['year']
-        movie.rating = data['rating']
-        movie.genre_id = data['genre_id']
-        movie.director_id = data['director_id']
-        self.movie_dao.update(movie)
-        return movie
+    # def update_movie_partial(self, data):
+    #     movie = self.get_movies(data['movie_id'])
+    #
+    #     if not movie:
+    #         return 'не нашли', 404
+    #     movie.title = data['title']
+    #     movie.description = data['description']
+    #     movie.trailer = data['trailer']
+    #     movie.year = data['year']
+    #     movie.rating = data['rating']
+    #     movie.genre_id = data['genre_id']
+    #     movie.director_id = data['director_id']
+    #     self.movie_dao.update(movie)
+    #     return movie
     
     def delete(self, movie_id):
+        try:
+            movie_service.delete(movie_id)
+            return 204
+        except Exception as e:
+            print(e)
+            return 500
+    
     

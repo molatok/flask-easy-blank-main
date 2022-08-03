@@ -17,11 +17,14 @@ class MovieDAO:
                 self.session.add(new_movie)
             return new_movie
             
-        def update(self, movie: Movie):
-            self.session.add(Movie)
+        def update(self, mid):
+            movie = self.get(mid)
+            self.session.add(movie)
             self.session.commit()
             
         def delete(self, mid):
-            movie = self.session.query(Movie).get(mid)
+            movie = self.get(mid)
+            if not movie:
+                return '', 204
             self.session.delete(movie)
             self.session.commit()

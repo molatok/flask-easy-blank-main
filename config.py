@@ -6,5 +6,4 @@ class Config(object):
     JSON_AS_ASCII = False
     RESTX_JSON = False
     SQLALCHEMY_TRACK_MODIFICATIONS = {'ensure_ascii': False, 'indent': 3}
-    HOST = "localhost"
-    PORT = 10001
+

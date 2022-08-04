@@ -1,7 +1,8 @@
 from flask import request
 from flask_restx import Resource, Namespace
+
+from dao.model.movies import MovieSchema
 from implemented import movie_service
-from setup_db import db
 
 movie_ns = Namespace('movie')
 
@@ -9,7 +10,8 @@ movie_ns = Namespace('movie')
 @movie_ns.route('/')
 class MovieView(Resource):
     def get(self):
-        return movie_service.get_movies()
+        movies = MovieSchema(many=True).dump().movie_service.get_movies()
+        return movies
     
     def post(self):
         new_movie = movie_service.create_movie(request.json)

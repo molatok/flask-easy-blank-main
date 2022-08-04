@@ -1,10 +1,11 @@
 from marshmallow import Schema, fields
-
 from setup_db import db
+
 
 class GenreSchema(Schema):
     id = fields.Int()
     name = fields.Str()
+
 
 class Genre(db.Model):
     __tablename__ = 'genre'

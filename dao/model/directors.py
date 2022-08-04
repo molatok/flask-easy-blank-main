@@ -1,14 +1,12 @@
-from flask_restx import Resource, Namespace
+from marshmallow import Schema, fields
+from setup_db import db
 
-directors_ns = Namespace('genres')
+class DirectorSchema(Schema):
+    id = fields.Int()
+    name = fields.Str()
+    
 
-@directors_ns.route('/')
-class DirectorsViews(Resource):
-    def get(self):
-        return '', 200
-
-
-@directors_ns.route('/<int:gid>')
-class DirectorViews(Resource):
-    def get(self, did):
-        return '', 200
+class Director(db.Model):
+    __tablename__ = 'director'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))

@@ -5,7 +5,7 @@ class MovieDAO:
     def __init__(self, session):
         self.session = session
     
-    def get(self, mid=None):
+    def get(self, mid=None,):
         if mid:
             return self.session.query(Movie).get(mid)
         else:

@@ -6,15 +6,15 @@ director_ns = Namespace('directors')
 
 
 @director_ns.route('/')
-class DirectorsViews(Resource):
+class DirectorsView(Resource):
     schema = DirectorSchema(many=True)
     
     def get(self):
         return self.schema.dump(director_service.get()), 200
 
 
-@director_ns.route('/<int:gid>')
-class DirectorViews(Resource):
+@director_ns.route('/<int:did>')
+class DirectorView(Resource):
     schema = DirectorSchema()
     
     def get(self, did):

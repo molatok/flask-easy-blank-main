@@ -15,19 +15,19 @@ class MovieDAO:
         else:
             return query.all()
         
-        def create(self, data):
-            new_movie = Movie(**data)
-            with self.session.begin():
-                self.session.add(new_movie)
-            return new_movie
+    def create(self, data):
+        new_movie = Movie(**data)
+        with self.session.begin():
+            self.session.add(new_movie)
+        return new_movie
         
-        def update(self, movie):
-            self.session.add(movie)
-            self.session.commit()
+    def update(self, movie):
+        self.session.add(movie)
+        self.session.commit()
         
-        def delete(self, mid):
-            movie = self.get(mid)
-            if None:
-                return
-            self.session.delete(movie)
-            self.session.commit()
+    def delete(self, mid):
+        movie = self.get(mid)
+        if None:
+            return
+        self.session.delete(movie)
+        self.session.commit()

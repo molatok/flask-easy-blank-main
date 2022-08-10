@@ -21,9 +21,6 @@ class MovieService:
         movie.director_id = data['director_id']
         self.dao.update(movie)
         return movie
-        
-        self.session.add(movie)
-        self.session.commit()
     
     def delete(self, mid):
         movie = self.get(mid)

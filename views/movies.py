@@ -29,7 +29,7 @@ class MovieView(Resource):
         return self.schema.dump(movie_service.get_movies(movie_id)), 200
     
     def put(self, movie_id: int):
-        return self.schema.dump(movie_service.update_movie_full(movie_id, request.json)), 200
+        return self.schema.dump(movie_service.update(movie_id, request.json)), 200
     
     def delete(self, movie_id):
         movie_service.delete(movie_id)

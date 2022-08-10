@@ -23,15 +23,4 @@ class MovieService:
         return movie
     
     def delete(self, mid):
-        movie = self.get(mid)
-        if not movie:
-            return
-        self.session.delete(movie)
-    
-    def filter_by_genre(self, genre_id):
-        movies = self.get_movies()
-        result = []
-        for movie in movies:
-            if movie.genre_id == int(genre_id):
-                result.append(movie)
-        return result
+        self.dao.delete(mid)
